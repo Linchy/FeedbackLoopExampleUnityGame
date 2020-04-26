@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy $(TargetDir)$(TargetName).dll $(SolutionDir)FeedbackLoopExampleUnityProject\Assets\Plugins /Y&#xD;&#xA;xcopy $(TargetDir)$(TargetName).pdb $(SolutionDir)FeedbackLoopExampleUnityProject\Assets\Plugins /Y" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\Program Files\Unity\Hub\Editor\2018.4.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

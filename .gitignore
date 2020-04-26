@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+**/.vs
+**/bin
+**/obj
+/packages
+/FeedbackLoopExampleUnityProject/Library/assetDatabase3
+/FeedbackLoopExampleUnityProject/Library/metadata
+/FeedbackLoopExampleUnityProject/Library/*Cache*
+/FeedbackLoopExampleUnityProject/Library/*.log
+/FeedbackLoopExampleUnityProject/Logs
+/FeedbackLoopExampleUnityProject/Temp
