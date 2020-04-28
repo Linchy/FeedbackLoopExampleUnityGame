@@ -12,6 +12,8 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
 {
     public class Program
     {
+        private static HashSet<Type> stubbedUnityTypes;
+
         public static void Main(string[] args)
         {
             string outputDirectory = "Stubs";
@@ -20,24 +22,26 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
                 Directory.Delete(outputDirectory, true);
             }
 
-            GenerateStubClassesForAssembly(typeof(UnityEngine.MonoBehaviour).Assembly, "UnityEngine", outputDirectory);
+            stubbedUnityTypes = new HashSet<Type>();
+
+            var typesUnityEngine = GetTypesToConvertForAssembly(typeof(UnityEngine.MonoBehaviour).Assembly, "UnityEngine");
+            foreach (var type in typesUnityEngine)
+            {
+                stubbedUnityTypes.Add(type);
+            }
+            GenerateStubClassesForAssembly(typesUnityEngine, outputDirectory);
         }
 
-        private static void GenerateStubClassesForAssembly(Assembly assembly, string namespacePrefix, string outputDirectory)
+        private static Type[] GetTypesToConvertForAssembly(Assembly assembly, string namespacePrefix)
         {
             var types = assembly.GetTypes();
+            return types.Where(t => t.IsClass && t.Namespace.StartsWith(namespacePrefix)).ToArray();
+        }
+
+        private static void GenerateStubClassesForAssembly(Type[] types, string outputDirectory)
+        {
             foreach (var type in types)
             {
-                if (!type.IsClass)
-                {
-                    continue;
-                }
-
-                if (!type.Namespace.StartsWith(namespacePrefix))
-                {
-                    continue;
-                }
-
                 var builder = new StringBuilder();
 
                 var members = type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
@@ -58,7 +62,7 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
                             {
                                 var field = (FieldInfo)member;
                                 var modifier = (field.IsStatic ? " static" : "");
-                                builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(field.FieldType)} {field.Name};");
+                                builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(field.FieldType, true)} {GetSafeName(field.Name)};");
                             }
                             break;
                         case MemberTypes.Property:
@@ -67,12 +71,12 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
                                 if (property.CanRead & property.CanWrite)
                                 {
                                     var modifier = (property.GetGetMethod().IsStatic ? " static" : "");
-                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(property.PropertyType)} {property.Name} {{ get => thrown new NotImplementedException(); set => thrown new NotImplementedException(); }};");
+                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(property.PropertyType, true)} {GetSafeName(property.Name)} {{ get => throw new NotImplementedException(); set => throw new NotImplementedException(); }}");
                                 }
                                 else if (property.CanRead)
                                 {
                                     var modifier = (property.GetGetMethod().IsStatic ? " static" : "");
-                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(property.PropertyType)} {property.Name} => thrown new NotImplementedException();");
+                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(property.PropertyType, true)} {GetSafeName(property.Name)} => throw new NotImplementedException();");
                                 }
                                 else
                                 {
@@ -84,14 +88,14 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
                             {
                                 var eventInfo = (EventInfo)member; 
                                 var modifier = (eventInfo.GetAddMethod().IsStatic ? " static" : "");
-                                builder.AppendLine($"\t\tpublic{modifier} event {GetTypeFriendlyName(eventInfo.EventHandlerType)} {eventInfo.Name};");
+                                builder.AppendLine($"\t\tpublic{modifier} event {GetTypeFriendlyName(eventInfo.EventHandlerType, true)} {GetSafeName(eventInfo.Name)};");
                             }
                             break;
                         case MemberTypes.Constructor:
                             {
 
                                 var constructor = (ConstructorInfo)member;
-                                builder.AppendLine($"\t\tpublic {type.Name}({string.Join(", ", constructor.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType)} {p.Name}"))}) {{ }}");
+                                builder.AppendLine($"\t\tpublic {type.Name}({string.Join(", ", constructor.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType, true)} {GetSafeName(p.Name)}"))}) {{ }}");
                             }
                             break;
                         case MemberTypes.Method:
@@ -102,7 +106,7 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
                                 if (!method.IsSpecialName)
                                 {
                                     var modifier = (method.IsStatic ? " static" : "");
-                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(method.ReturnType)} {method.Name}{GetMethodGenericParameters(method)}({string.Join(", ", method.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType)} {p.Name}"))}) => thrown new NotImplementedException();");
+                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(method.ReturnType, true)} {method.Name}{GetMethodGenericParameters(method)}({string.Join(", ", method.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType, true)} {GetSafeName(p.Name)}"))}) => throw new NotImplementedException();");
                                 }
                             }
                             break;
@@ -140,7 +144,8 @@ namespace FL
     }}
 }}";
 
-                string contents = string.Format(format, GetClassFriendlyName(type), type.BaseType == typeof(object) ? "" : ": " + GetTypeFriendlyName(type.BaseType), builder.ToString());
+                bool hasBaseType = type.BaseType != null && type.BaseType != typeof(object);
+                string contents = string.Format(format, GetTypeFriendlyName(type, false), hasBaseType ? ": " + GetTypeFriendlyName(type.BaseType, true) : "", builder.ToString());
 
 
                 Directory.CreateDirectory(outputDirectory);
@@ -151,11 +156,21 @@ namespace FL
             }
         }
 
+        private static object GetSafeName(string name)
+        {
+            if (name == "object")
+            {
+                return '@' + name;
+            }
+
+            return name;
+        }
+
         private static string GetMethodGenericParameters(MethodInfo method)
         {
             if (method.ContainsGenericParameters)
             {
-                return '<' + string.Join(", ", method.GetGenericArguments().Select(t => GetTypeFriendlyName(t))) +'>';
+                return '<' + string.Join(", ", method.GetGenericArguments().Select(t => GetTypeFriendlyName(t, true))) +'>';
             }
 
             return "";
@@ -166,15 +181,15 @@ namespace FL
             return member.CustomAttributes.Any(a => a.AttributeType == attributeType);
         }
 
-        private static string GetClassFriendlyName(Type type)
-        {
-            if (type.IsGenericType)
-            {
+        //private static string GetClassFriendlyName(Type type)
+        //{
+        //    if (type.IsGenericType)
+        //    {
 
-            }
+        //    }
 
-            return type.Name;
-        }
+        //    return type.Name;
+        //}
 
         private static string GetFileFriendlyName(string fullName)
         {
@@ -185,14 +200,58 @@ namespace FL
             return fullName;
         }
 
-        private static string GetTypeFriendlyName(Type type)
+        //private static string GetTypeFriendlyName(Type type)
+        //{
+        //    var codeDomProvider = CodeDomProvider.CreateProvider("C#");
+        //    var typeReferenceExpression = new CodeTypeReferenceExpression(new CodeTypeReference(type));
+        //    using (var writer = new StringWriter())
+        //    {
+        //        codeDomProvider.GenerateCodeFromExpression(typeReferenceExpression, writer, new CodeGeneratorOptions());
+        //        return writer.GetStringBuilder().ToString();
+        //    }
+        //}
+
+        public static string GetTypeFriendlyName(Type type, bool startWithFullName)
         {
-            var codeDomProvider = CodeDomProvider.CreateProvider("C#");
-            var typeReferenceExpression = new CodeTypeReferenceExpression(new CodeTypeReference(type));
-            using (var writer = new StringWriter())
+            if (type == typeof(void))
+                return "void";
+            else if (type == typeof(byte))
+                return "byte";
+            else if (type == typeof(bool))
+                return "bool";
+            else if (type == typeof(short))
+                return "short";
+            else if (type == typeof(int))
+                return "int";
+            else if (type == typeof(long))
+                return "long";
+            else if (type == typeof(float))
+                return "float";
+            else if (type == typeof(double))
+                return "double";
+            else if (type == typeof(decimal))
+                return "decimal";
+            else if (type == typeof(string))
+                return "string";
+            else
             {
-                codeDomProvider.GenerateCodeFromExpression(typeReferenceExpression, writer, new CodeGeneratorOptions());
-                return writer.GetStringBuilder().ToString();
+                string name = type.Name;
+                if (startWithFullName)
+                {
+                    if (stubbedUnityTypes.Contains(type))
+                    {
+                        name = "FL." + type.Name;
+                    }
+                    else if (type.FullName != null)
+                    {
+                        name = type.FullName;
+                    }
+                }
+
+                if (type.IsGenericType)
+                    return name.Split('`')[0] + "<" + string.Join(", ", type.GetGenericArguments().Select(x => GetTypeFriendlyName(x, false)).ToArray()) + ">";
+                else
+                    return name;
             }
         }
     }
