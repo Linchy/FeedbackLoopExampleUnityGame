@@ -44,6 +44,9 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\Program Files\Unity\Hub\Editor\2018.4.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\Program Files\Unity\Hub\Editor\2018.4.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

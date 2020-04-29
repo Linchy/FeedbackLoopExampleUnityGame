@@ -16,31 +16,43 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
 
         public static void Main(string[] args)
         {
-            string outputDirectory = @"C:\git\FeedbackLoopExampleUnityGame\FeedbackLoopExampleUnityProject.Injected\addedstubs";// "Stubs";
+            string outputDirectory = @"C:\git\FeedbackLoopExampleUnityGame\FeedbackLoopExampleUnityProject.Injected\Stubs.Generated";// "Stubs";
             if (Directory.Exists(outputDirectory))
             {
                 Directory.Delete(outputDirectory, true);
             }
 
-            stubbedUnityTypes = new HashSet<Type>();
+            var typesToConvertByAssembly = new []
+            {
+                GetTypesToConvertForAssembly(typeof(UnityEngine.MonoBehaviour).Assembly, "UnityEngine"),
+                GetTypesToConvertForAssembly(typeof(UnityEngine.Physics).Assembly, "UnityEngine"),
+            };
 
-            var typesUnityEngine = GetTypesToConvertForAssembly(typeof(UnityEngine.MonoBehaviour).Assembly, "UnityEngine");
-            foreach (var type in typesUnityEngine)
+            stubbedUnityTypes = new HashSet<Type>();
+            foreach (var type in typesToConvertByAssembly.SelectMany(asm => asm.Types))
             {
                 stubbedUnityTypes.Add(type);
             }
-            GenerateStubClassesForAssembly(typesUnityEngine, outputDirectory);
+
+            foreach (var asm in typesToConvertByAssembly)
+            {
+                GenerateStubClassesForAssembly(asm.Types, Path.Combine(outputDirectory, asm.AsmName));
+            }
         }
 
-        private static Type[] GetTypesToConvertForAssembly(Assembly assembly, string namespacePrefix)
+        private static (string AsmName, Type[] Types) GetTypesToConvertForAssembly(Assembly assembly, string namespacePrefix)
         {
             var types = assembly.GetTypes();
-            return types.Where(t => t.IsClass 
-                                 && !IsDelegate(t) 
+
+            return (
+                assembly.GetName().Name,
+                types.Where(t => t.IsClass
+                                 && !IsDelegate(t)
                                  && !HasAttribute(t, typeof(ObsoleteAttribute))
-                                 && t.Namespace.StartsWith(namespacePrefix) 
+                                 && t.Namespace.StartsWith(namespacePrefix)
                                  && !t.Name.StartsWith("<"))
-                        .ToArray();
+                     .ToArray()
+                );
         }
 
         private static void GenerateStubClassesForAssembly(Type[] types, string outputDirectory)
@@ -60,13 +72,38 @@ namespace FL_{type.Namespace}
 {{
 ");
 
+                bool hasInAccessibleType = false;
+
                 var typeNestingList = GetTypeNestingList(type);
                 foreach (var typeDef in typeNestingList)
                 {
+                    // check is part of public API
+                    if (typeDef.IsNotPublic)
+                    {
+                        hasInAccessibleType = true;
+                        break;
+                    }
+
                     bool hasBaseType = type.BaseType != null && type.BaseType != typeof(object);
-                    string baseTypeString = (hasBaseType ? " : " + GetTypeFriendlyName(type.BaseType) : "");
+                    string baseTypeString = "";
+                    if (hasBaseType)
+                    {
+                        // check is part of public API
+                        if (type.BaseType.IsNotPublic)
+                        {
+                            hasInAccessibleType = true;
+                            break;
+                        }
+
+                        baseTypeString = " : " + GetTypeFriendlyName(type.BaseType);
+                    }
 
                     builder.AppendLine($"\tpublic unsafe partial class {GetTypeFriendlyName(typeDef, false)}{baseTypeString} {{");
+                }
+
+                if (hasInAccessibleType)
+                {
+                    continue;
                 }
 
                 var members = type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
@@ -87,25 +124,35 @@ namespace FL_{type.Namespace}
 
                     switch (member.MemberType)
                     {
+                        
                         case MemberTypes.Field:
                             {
                                 var field = (FieldInfo)member;
-                                var modifier = (field.IsStatic ? " static" : "");
-                                builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(field.FieldType)} {GetSafeName(field.Name)};");
+
+                                bool isOverride = field.DeclaringType != type;
+                                var modifiersString = GetModifiers(field.IsStatic, isOverride, false);
+
+                                builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(field.FieldType)} {GetSafeName(field.Name)};");
                             }
                             break;
                         case MemberTypes.Property:
                             {
                                 var property = (PropertyInfo)member;
-                                if (property.CanRead & property.CanWrite)
+                                if (property.CanRead)
                                 {
-                                    var modifier = (property.GetGetMethod().IsStatic ? " static" : "");
-                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} {{ get => throw new NotImplementedException(); set => throw new NotImplementedException(); }}");
-                                }
-                                else if (property.CanRead)
-                                {
-                                    var modifier = (property.GetGetMethod().IsStatic ? " static" : "");
-                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} => throw new NotImplementedException();");
+                                    var getter = property.GetGetMethod();
+
+                                    bool isOverride = getter.GetBaseDefinition() != getter;
+                                    var modifiersString = GetModifiers(getter.IsStatic, isOverride, getter.IsVirtual);
+                                   
+                                    if (property.CanWrite)
+                                    {
+                                        builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} {{ get => throw new NotImplementedException(); set => throw new NotImplementedException(); }}");
+                                    }
+                                    else
+                                    {
+                                        builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} => throw new NotImplementedException();");
+                                    }
                                 }
                                 else
                                 {
@@ -116,15 +163,20 @@ namespace FL_{type.Namespace}
                         case MemberTypes.Event:
                             {
                                 var eventInfo = (EventInfo)member;
-                                var modifier = (eventInfo.GetAddMethod().IsStatic ? " static" : "");
-                                builder.AppendLine($"\t\tpublic{modifier} event {GetTypeFriendlyName(eventInfo.EventHandlerType)} {GetSafeName(eventInfo.Name)};");
+
+                                var add = eventInfo.GetAddMethod();
+                                bool isOverride = add.GetBaseDefinition() != add;
+
+                                var modifiersString = GetModifiers(add.IsStatic, isOverride, add.IsVirtual);
+
+                                builder.AppendLine($"\t\tpublic{modifiersString} event {GetTypeFriendlyName(eventInfo.EventHandlerType)} {GetSafeName(eventInfo.Name)};");
                             }
                             break;
                         case MemberTypes.Constructor:
                             {
 
                                 var constructor = (ConstructorInfo)member;
-                                builder.AppendLine($"\t\tpublic {GetTypeSimpleName(type)}({string.Join(", ", constructor.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"))}) {{ }}");
+                                builder.AppendLine($"\t\t//public {GetTypeSimpleName(type)}({string.Join(", ", constructor.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"))}) {{ }}");
                             }
                             break;
                         case MemberTypes.Method:
@@ -134,12 +186,14 @@ namespace FL_{type.Namespace}
                                 // ignore get/set property methods
                                 if (!method.IsSpecialName)
                                 {
-                                    var modifier = (method.IsStatic ? " static" : "");
+                                    bool isOverride = method.GetBaseDefinition() != method;
+
+                                    var modifiersString = GetModifiers(method.IsStatic, isOverride, method.IsVirtual);
 
                                     var genericParametersString = GetMethodGenericParameters(method);
                                     var parametersString = string.Join(", ", method.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"));
 
-                                    builder.AppendLine($"\t\tpublic{modifier} {GetTypeFriendlyName(method.ReturnType)} {method.Name}{genericParametersString}({parametersString}){GetMethodGenericConstraints(method)} => throw new NotImplementedException();");
+                                    builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(method.ReturnType)} {method.Name}{genericParametersString}({parametersString}){GetMethodGenericConstraints(method)} => throw new NotImplementedException();");
                                 }
                             }
                             break;
@@ -182,6 +236,26 @@ namespace FL_{type.Namespace}
                     writer.Write(builder.ToString());
                 }
             }
+        }
+
+        private static string GetModifiers(bool isStatic, bool isOverride, bool isVirtual)
+        {
+            string modifiers = "";
+            if (isStatic)
+            {
+                modifiers += " static";
+            }
+          
+            if (isOverride)
+            {
+                modifiers += " override";
+            }
+            else if (isVirtual)
+            {
+                modifiers += " virtual";
+            }
+
+            return modifiers;
         }
 
         private static List<Type> GetTypeNestingList(Type type)

@@ -12,3 +12,4 @@
 /FeedbackLoopExampleUnityProject/Library/*.log
 /FeedbackLoopExampleUnityProject/Logs
 /FeedbackLoopExampleUnityProject/Temp
+*.user
