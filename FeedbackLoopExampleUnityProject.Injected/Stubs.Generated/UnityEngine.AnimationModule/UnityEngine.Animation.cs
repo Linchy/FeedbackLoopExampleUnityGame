@@ -44,7 +44,7 @@ namespace FL_UnityEngine
 		public FL_UnityEngine.AnimationClip clip { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.AnimationCullingType cullingType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public bool isPlaying => throw new NotImplementedException();
-		public FL_UnityEngine.AnimationState Item => throw new NotImplementedException();
+		public FL_UnityEngine.AnimationState this[string name] => throw new NotImplementedException();
 		public UnityEngine.Bounds localBounds { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public bool playAutomatically { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.WrapMode wrapMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

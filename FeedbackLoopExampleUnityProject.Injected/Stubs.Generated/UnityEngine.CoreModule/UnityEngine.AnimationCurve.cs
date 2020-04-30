@@ -21,7 +21,7 @@ namespace FL_UnityEngine
 		public int MoveKey(int index, UnityEngine.Keyframe key) => throw new NotImplementedException();
 		public void RemoveKey(int index) => throw new NotImplementedException();
 		public void SmoothTangents(int index, float weight) => throw new NotImplementedException();
-		public UnityEngine.Keyframe Item => throw new NotImplementedException();
+		public UnityEngine.Keyframe this[int index] => throw new NotImplementedException();
 		public UnityEngine.Keyframe[] keys { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public int length => throw new NotImplementedException();
 		public UnityEngine.WrapMode postWrapMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

@@ -145,14 +145,33 @@ namespace FL_{type.Namespace}
 
                                     bool isOverride = getter.GetBaseDefinition() != getter;
                                     var modifiersString = GetModifiers(getter.IsStatic, isOverride, getter.IsVirtual);
-                                   
-                                    if (property.CanWrite)
+
+                                    var indexParameters = property.GetIndexParameters();
+                                    var parametersString = GetParametersString(indexParameters);
+
+                                    // regular property
+                                    if (indexParameters.Length == 0)
                                     {
-                                        builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} {{ get => throw new NotImplementedException(); set => throw new NotImplementedException(); }}");
+                                        if (property.CanWrite)
+                                        {
+                                            builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} {{ get => throw new NotImplementedException(); set => throw new NotImplementedException(); }}");
+                                        }
+                                        else
+                                        {
+                                            builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} => throw new NotImplementedException();");
+                                        }
                                     }
+                                    // property indexer
                                     else
                                     {
-                                        builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} {GetSafeName(property.Name)} => throw new NotImplementedException();");
+                                        if (property.CanWrite)
+                                        {
+                                            builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} this[{parametersString}] {{ get => throw new NotImplementedException(); set => throw new NotImplementedException(); }}");
+                                        }
+                                        else
+                                        {
+                                            builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(property.PropertyType)} this[{parametersString}] => throw new NotImplementedException();");
+                                        }
                                     }
                                 }
                                 else
@@ -188,11 +207,12 @@ namespace FL_{type.Namespace}
                                 if (!method.IsSpecialName)
                                 {
                                     bool isOverride = method.GetBaseDefinition() != method;
+                                    var methodParameters = method.GetParameters();
 
                                     var modifiersString = GetModifiers(method.IsStatic, isOverride, method.IsVirtual);
 
                                     var genericParametersString = GetMethodGenericParameters(method);
-                                    var parametersString = string.Join(", ", method.GetParameters().Select(p => $"{GetParameterModifier(p)}{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"));
+                                    var parametersString = GetParametersString(methodParameters);
 
                                     builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(method.ReturnType)} {method.Name}{genericParametersString}({parametersString}){GetMethodGenericConstraints(method)} => throw new NotImplementedException();");
                                 }
@@ -239,7 +259,12 @@ namespace FL_{type.Namespace}
             }
         }
 
-        private static object GetParameterModifier(ParameterInfo parameter)
+        private static string GetParametersString(ParameterInfo[] parameters)
+        {
+            return string.Join(", ", parameters.Select(p => $"{GetParameterModifier(p)}{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"));
+        }
+
+        private static string GetParameterModifier(ParameterInfo parameter)
         {
             string modifiers = "";
 
