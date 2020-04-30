@@ -14,7 +14,7 @@ namespace FL_UnityEngine
 		public void BroadcastMessage(string methodName, UnityEngine.SendMessageOptions options) => throw new NotImplementedException();
 		public bool CompareTag(string tag) => throw new NotImplementedException();
 		public FL_UnityEngine.Component GetComponent(System.Type type) => throw new NotImplementedException();
-		public T GetComponent<T>() => throw new NotImplementedException();
+		//public T GetComponent<T>() => throw new NotImplementedException();
 		public FL_UnityEngine.Component GetComponent(string type) => throw new NotImplementedException();
 		public FL_UnityEngine.Component GetComponentInChildren(System.Type t, bool includeInactive) => throw new NotImplementedException();
 		public FL_UnityEngine.Component GetComponentInChildren(System.Type t) => throw new NotImplementedException();
@@ -45,7 +45,7 @@ namespace FL_UnityEngine
 		public void SendMessageUpwards(string methodName, System.Object value) => throw new NotImplementedException();
 		public void SendMessageUpwards(string methodName) => throw new NotImplementedException();
 		public void SendMessageUpwards(string methodName, UnityEngine.SendMessageOptions options) => throw new NotImplementedException();
-		public FL_UnityEngine.GameObject gameObject => throw new NotImplementedException();
+		//public FL_UnityEngine.GameObject gameObject => throw new NotImplementedException();
 		public string tag { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public FL_UnityEngine.Transform transform => throw new NotImplementedException();
 	}

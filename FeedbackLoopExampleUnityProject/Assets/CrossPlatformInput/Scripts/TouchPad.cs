@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace UnityStandardAssets.CrossPlatformInput
 {
 	[RequireComponent(typeof(Image))]
-	public class TouchPad : FL.MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+	public class TouchPad : FL_UnityEngine.MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
 		// Options for which axes to use
 		public enum AxisOption
@@ -114,23 +114,23 @@ namespace UnityStandardAssets.CrossPlatformInput
 			{
 				return;
 			}
-			if (FL.Input.touchCount >= m_Id + 1 && m_Id != -1)
+			if (FL_UnityEngine.Input.touchCount >= m_Id + 1 && m_Id != -1)
 			{
 #if !UNITY_EDITOR
 
             if (controlStyle == ControlStyle.Swipe)
             {
                 m_Center = m_PreviousTouchPos;
-                m_PreviousTouchPos = FL.Input.touches[m_Id].position;
+                m_PreviousTouchPos = FL_UnityEngine.Input.touches[m_Id].position;
             }
-            Vector2 pointerDelta = new Vector2(FL.Input.touches[m_Id].position.x - m_Center.x , FL.Input.touches[m_Id].position.y - m_Center.y).normalized;
+            Vector2 pointerDelta = new Vector2(FL_UnityEngine.Input.touches[m_Id].position.x - m_Center.x , FL_UnityEngine.Input.touches[m_Id].position.y - m_Center.y).normalized;
             pointerDelta.x *= Xsensitivity;
             pointerDelta.y *= Ysensitivity;
 #else
 				Vector2 pointerDelta;
-				pointerDelta.x = FL.Input.mousePosition.x - m_PreviousMouse.x;
-				pointerDelta.y = FL.Input.mousePosition.y - m_PreviousMouse.y;
-				m_PreviousMouse = new Vector3(FL.Input.mousePosition.x, FL.Input.mousePosition.y, 0f);
+				pointerDelta.x = FL_UnityEngine.Input.mousePosition.x - m_PreviousMouse.x;
+				pointerDelta.y = FL_UnityEngine.Input.mousePosition.y - m_PreviousMouse.y;
+				m_PreviousMouse = new Vector3(FL_UnityEngine.Input.mousePosition.x, FL_UnityEngine.Input.mousePosition.y, 0f);
 #endif
 				UpdateVirtualAxes(new Vector3(pointerDelta.x, pointerDelta.y, 0));
 			}

@@ -13,7 +13,7 @@ using System.Reflection;
 /// and only methods used by the scenario are made to work (such as Input,
 /// and Scene Traversal mechanisms)
 /// </summary>
-namespace FL
+namespace FL_UnityEngine
 {
     /// <summary>
     /// Replacement Class for <see cref="UnityEngine.MonoBehaviour" />

@@ -7,7 +7,7 @@ using UnityEditor;
 namespace UnityStandardAssets.CrossPlatformInput
 {
     // helps with managing tilt input on mobile devices
-    public class TiltInput : FL.MonoBehaviour
+    public class TiltInput : FL_UnityEngine.MonoBehaviour
     {
         // options for the various orientations
         public enum AxisOptions
@@ -56,16 +56,16 @@ namespace UnityStandardAssets.CrossPlatformInput
         private void Update()
         {
             float angle = 0;
-            if (FL.Input.acceleration != Vector3.zero)
+            if (FL_UnityEngine.Input.acceleration != Vector3.zero)
             {
                 switch (tiltAroundAxis)
                 {
                     case AxisOptions.ForwardAxis:
-                        angle = Mathf.Atan2(FL.Input.acceleration.x, -FL.Input.acceleration.y)*Mathf.Rad2Deg +
+                        angle = Mathf.Atan2(FL_UnityEngine.Input.acceleration.x, -FL_UnityEngine.Input.acceleration.y)*Mathf.Rad2Deg +
                                 centreAngleOffset;
                         break;
                     case AxisOptions.SidewaysAxis:
-                        angle = Mathf.Atan2(FL.Input.acceleration.z, -FL.Input.acceleration.y)*Mathf.Rad2Deg +
+                        angle = Mathf.Atan2(FL_UnityEngine.Input.acceleration.z, -FL_UnityEngine.Input.acceleration.y)*Mathf.Rad2Deg +
                                 centreAngleOffset;
                         break;
                 }

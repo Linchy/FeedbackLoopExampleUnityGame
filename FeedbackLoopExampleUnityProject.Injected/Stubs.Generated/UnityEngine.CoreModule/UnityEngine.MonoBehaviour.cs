@@ -10,7 +10,7 @@ namespace FL_UnityEngine
 		//public MonoBehaviour() { }
 		public void CancelInvoke() => throw new NotImplementedException();
 		public void CancelInvoke(string methodName) => throw new NotImplementedException();
-		public void Invoke(string methodName, float time) => throw new NotImplementedException();
+		//public void Invoke(string methodName, float time) => throw new NotImplementedException();
 		public void InvokeRepeating(string methodName, float time, float repeatRate) => throw new NotImplementedException();
 		public bool IsInvoking() => throw new NotImplementedException();
 		public bool IsInvoking(string methodName) => throw new NotImplementedException();

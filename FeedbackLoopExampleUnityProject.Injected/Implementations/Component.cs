@@ -8,7 +8,7 @@
 /// and only methods used by the scenario are made to work (such as Input,
 /// and Scene Traversal mechanisms)
 /// </summary>
-namespace FL
+namespace FL_UnityEngine
 {
     public partial class Component
     {

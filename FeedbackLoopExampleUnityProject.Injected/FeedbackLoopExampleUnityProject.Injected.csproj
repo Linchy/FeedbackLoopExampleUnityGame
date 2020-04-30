@@ -11,13 +11,10 @@
 
   <ItemGroup>
     <Compile Remove="Implementations.Half\**" />
-    <Compile Remove="Implementations\**" />
     <Compile Remove="Stubs\**" />
     <EmbeddedResource Remove="Implementations.Half\**" />
-    <EmbeddedResource Remove="Implementations\**" />
     <EmbeddedResource Remove="Stubs\**" />
     <None Remove="Implementations.Half\**" />
-    <None Remove="Implementations\**" />
     <None Remove="Stubs\**" />
   </ItemGroup>
 

@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-	[RequireComponent(typeof(FL.Rigidbody))]
-	[RequireComponent(typeof(FL.CapsuleCollider))]
-	[RequireComponent(typeof(FL.Animator))]
-	public class ThirdPersonCharacter : FL.MonoBehaviour
+	[RequireComponent(typeof(FL_UnityEngine.Rigidbody))]
+	[RequireComponent(typeof(FL_UnityEngine.CapsuleCollider))]
+	[RequireComponent(typeof(FL_UnityEngine.Animator))]
+	public class ThirdPersonCharacter : FL_UnityEngine.MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
@@ -18,8 +18,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
 
-		FL.Rigidbody m_Rigidbody;
-		FL.Animator m_Animator;
+		FL_UnityEngine.Rigidbody m_Rigidbody;
+		FL_UnityEngine.Animator m_Animator;
 		bool m_IsGrounded;
 		float m_OrigGroundCheckDistance;
 		const float k_Half = 0.5f;
@@ -28,15 +28,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_GroundNormal;
 		float m_CapsuleHeight;
 		Vector3 m_CapsuleCenter;
-		FL.CapsuleCollider m_Capsule;
+		FL_UnityEngine.CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
 
 		void Start()
 		{
-			m_Animator = GetComponent<FL.Animator>();
-			m_Rigidbody = GetComponent<FL.Rigidbody>();
-			m_Capsule = GetComponent<FL.CapsuleCollider>();
+			m_Animator = GetComponent<FL_UnityEngine.Animator>();
+			m_Rigidbody = GetComponent<FL_UnityEngine.Rigidbody>();
+			m_Capsule = GetComponent<FL_UnityEngine.CapsuleCollider>();
 			m_CapsuleHeight = m_Capsule.height;
 			m_CapsuleCenter = m_Capsule.center;
 
@@ -91,7 +91,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
 				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
-				if (FL.Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, FL.Physics.AllLayers, QueryTriggerInteraction.Ignore))
+				if (FL_UnityEngine.Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, FL_UnityEngine.Physics.AllLayers, QueryTriggerInteraction.Ignore))
 				{
 					m_Crouching = true;
 					return;
@@ -109,7 +109,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
 				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
-				if (FL.Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, FL.Physics.AllLayers, QueryTriggerInteraction.Ignore))
+				if (FL_UnityEngine.Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, FL_UnityEngine.Physics.AllLayers, QueryTriggerInteraction.Ignore))
 				{
 					m_Crouching = true;
 				}
@@ -158,7 +158,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		void HandleAirborneMovement()
 		{
 			// apply extra gravity from multiplier:
-			Vector3 extraGravityForce = (FL.Physics.gravity * m_GravityMultiplier) - FL.Physics.gravity;
+			Vector3 extraGravityForce = (FL_UnityEngine.Physics.gravity * m_GravityMultiplier) - FL_UnityEngine.Physics.gravity;
 			m_Rigidbody.AddForce(extraGravityForce);
 
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
@@ -206,11 +206,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			RaycastHit hitInfo;
 #if UNITY_EDITOR
 			// helper to visualise the ground check ray in the scene view
-			FL.Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
+			FL_UnityEngine.Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (FL.Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+			if (FL_UnityEngine.Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;

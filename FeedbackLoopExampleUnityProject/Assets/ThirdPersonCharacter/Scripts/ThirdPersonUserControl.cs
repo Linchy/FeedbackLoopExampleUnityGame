@@ -5,10 +5,10 @@ using UnityStandardAssets.CrossPlatformInput;
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
-    public class ThirdPersonUserControl : FL.MonoBehaviour
+    public class ThirdPersonUserControl : FL_UnityEngine.MonoBehaviour
     {
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-        private FL.Transform m_Cam;                  // A reference to the main camera in the scenes transform
+        private FL_UnityEngine.Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
@@ -16,13 +16,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Start()
         {
             // get the transform of the main camera
-            if (FL.Camera.main != null)
+            if (FL_UnityEngine.Camera.main != null)
             {
-                m_Cam = FL.Camera.main.transform;
+                m_Cam = FL_UnityEngine.Camera.main.transform;
             }
             else
             {
-                FL.Debug.LogWarning(
+                FL_UnityEngine.Debug.LogWarning(
                     "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
                 // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
             }
@@ -47,7 +47,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = FL.Input.GetKey(KeyCode.C);
+            bool crouch = FL_UnityEngine.Input.GetKey(KeyCode.C);
 
             // calculate move direction to pass to character
             if (m_Cam != null)
@@ -63,7 +63,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
 #if !MOBILE_INPUT
 			// walk speed multiplier
-	        if (FL.Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
+	        if (FL_UnityEngine.Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
 #endif
 
             // pass all parameters to the character control script

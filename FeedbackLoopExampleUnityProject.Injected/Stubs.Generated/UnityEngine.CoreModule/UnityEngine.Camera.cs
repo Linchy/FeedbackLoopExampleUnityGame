@@ -94,7 +94,7 @@ namespace FL_UnityEngine
 		public float[] layerCullDistances { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public bool layerCullSpherical { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.Vector2 lensShift { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public static FL_UnityEngine.Camera main => throw new NotImplementedException();
+		//public static FL_UnityEngine.Camera main => throw new NotImplementedException();
 		public float nearClipPlane { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.Matrix4x4 nonJitteredProjectionMatrix { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.Rendering.OpaqueSortMode opaqueSortMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-    public class ButtonHandler : FL.MonoBehaviour
+    public class ButtonHandler : FL_UnityEngine.MonoBehaviour
     {
 
         public string Name;

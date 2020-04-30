@@ -60,7 +60,7 @@ namespace FL_UnityEngine
 		public UnityEngine.Vector3 localScale { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.Matrix4x4 localToWorldMatrix => throw new NotImplementedException();
 		public UnityEngine.Vector3 lossyScale => throw new NotImplementedException();
-		public FL_UnityEngine.Transform parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		//public FL_UnityEngine.Transform parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.Vector3 position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public UnityEngine.Vector3 right { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public FL_UnityEngine.Transform root => throw new NotImplementedException();
