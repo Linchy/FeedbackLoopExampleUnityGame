@@ -10,7 +10,7 @@ namespace FL_UnityEngine
 		//public Collider() { }
 		public UnityEngine.Vector3 ClosestPoint(UnityEngine.Vector3 position) => throw new NotImplementedException();
 		public UnityEngine.Vector3 ClosestPointOnBounds(UnityEngine.Vector3 position) => throw new NotImplementedException();
-		public bool Raycast(UnityEngine.Ray ray, ref UnityEngine.RaycastHit hitInfo, float maxDistance) => throw new NotImplementedException();
+		public bool Raycast(UnityEngine.Ray ray, out UnityEngine.RaycastHit hitInfo, float maxDistance) => throw new NotImplementedException();
 		public FL_UnityEngine.Rigidbody attachedRigidbody => throw new NotImplementedException();
 		public UnityEngine.Bounds bounds => throw new NotImplementedException();
 		public float contactOffset { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

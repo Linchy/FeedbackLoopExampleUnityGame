@@ -10,6 +10,6 @@ namespace FL_UnityEngine
 		//public ColorUtility() { }
 		public static string ToHtmlStringRGB(UnityEngine.Color color) => throw new NotImplementedException();
 		public static string ToHtmlStringRGBA(UnityEngine.Color color) => throw new NotImplementedException();
-		public static bool TryParseHtmlString(string htmlString, ref UnityEngine.Color color) => throw new NotImplementedException();
+		public static bool TryParseHtmlString(string htmlString, out UnityEngine.Color color) => throw new NotImplementedException();
 	}
 }

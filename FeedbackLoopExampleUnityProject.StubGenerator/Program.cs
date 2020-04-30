@@ -26,6 +26,7 @@ namespace FeedbackLoopExampleUnityProject.StubGenerator
             {
                 GetTypesToConvertForAssembly(typeof(UnityEngine.MonoBehaviour).Assembly, "UnityEngine"),
                 GetTypesToConvertForAssembly(typeof(UnityEngine.Physics).Assembly, "UnityEngine"),
+                GetTypesToConvertForAssembly(typeof(UnityEngine.Animator).Assembly, "UnityEngine")
             };
 
             stubbedUnityTypes = new HashSet<Type>();
@@ -191,7 +192,7 @@ namespace FL_{type.Namespace}
                                     var modifiersString = GetModifiers(method.IsStatic, isOverride, method.IsVirtual);
 
                                     var genericParametersString = GetMethodGenericParameters(method);
-                                    var parametersString = string.Join(", ", method.GetParameters().Select(p => $"{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"));
+                                    var parametersString = string.Join(", ", method.GetParameters().Select(p => $"{GetParameterModifier(p)}{GetTypeFriendlyName(p.ParameterType)} {GetSafeName(p.Name)}"));
 
                                     builder.AppendLine($"\t\tpublic{modifiersString} {GetTypeFriendlyName(method.ReturnType)} {method.Name}{genericParametersString}({parametersString}){GetMethodGenericConstraints(method)} => throw new NotImplementedException();");
                                 }
@@ -236,6 +237,25 @@ namespace FL_{type.Namespace}
                     writer.Write(builder.ToString());
                 }
             }
+        }
+
+        private static object GetParameterModifier(ParameterInfo parameter)
+        {
+            string modifiers = "";
+
+            if (parameter.ParameterType.IsByRef)
+            {
+                if (parameter.IsOut)
+                {
+                    modifiers += "out ";
+                }
+                else
+                {
+                    modifiers += "ref ";
+                }
+            }
+
+            return modifiers;
         }
 
         private static string GetModifiers(bool isStatic, bool isOverride, bool isVirtual)
@@ -379,7 +399,7 @@ namespace FL_{type.Namespace}
             else if (type.IsByRef)
             {
                 var elementType = type.GetElementType();
-                return "ref " + GetTypeFriendlyName(elementType);
+                return GetTypeFriendlyName(elementType);
             }
             else
             {

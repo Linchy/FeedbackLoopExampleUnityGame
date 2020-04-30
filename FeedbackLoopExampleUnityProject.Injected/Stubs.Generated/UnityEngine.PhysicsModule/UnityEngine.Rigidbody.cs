@@ -39,9 +39,9 @@ namespace FL_UnityEngine
 		public void ResetInertiaTensor() => throw new NotImplementedException();
 		public void SetDensity(float density) => throw new NotImplementedException();
 		public void Sleep() => throw new NotImplementedException();
-		public bool SweepTest(UnityEngine.Vector3 direction, ref UnityEngine.RaycastHit hitInfo, float maxDistance, UnityEngine.QueryTriggerInteraction queryTriggerInteraction) => throw new NotImplementedException();
-		public bool SweepTest(UnityEngine.Vector3 direction, ref UnityEngine.RaycastHit hitInfo, float maxDistance) => throw new NotImplementedException();
-		public bool SweepTest(UnityEngine.Vector3 direction, ref UnityEngine.RaycastHit hitInfo) => throw new NotImplementedException();
+		public bool SweepTest(UnityEngine.Vector3 direction, out UnityEngine.RaycastHit hitInfo, float maxDistance, UnityEngine.QueryTriggerInteraction queryTriggerInteraction) => throw new NotImplementedException();
+		public bool SweepTest(UnityEngine.Vector3 direction, out UnityEngine.RaycastHit hitInfo, float maxDistance) => throw new NotImplementedException();
+		public bool SweepTest(UnityEngine.Vector3 direction, out UnityEngine.RaycastHit hitInfo) => throw new NotImplementedException();
 		public UnityEngine.RaycastHit[] SweepTestAll(UnityEngine.Vector3 direction, float maxDistance, UnityEngine.QueryTriggerInteraction queryTriggerInteraction) => throw new NotImplementedException();
 		public UnityEngine.RaycastHit[] SweepTestAll(UnityEngine.Vector3 direction, float maxDistance) => throw new NotImplementedException();
 		public UnityEngine.RaycastHit[] SweepTestAll(UnityEngine.Vector3 direction) => throw new NotImplementedException();

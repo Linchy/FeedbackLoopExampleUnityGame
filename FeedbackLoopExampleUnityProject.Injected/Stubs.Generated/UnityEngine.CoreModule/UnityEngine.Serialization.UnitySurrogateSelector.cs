@@ -10,6 +10,6 @@ namespace FL_UnityEngine.Serialization
 		//public UnitySurrogateSelector() { }
 		public virtual void ChainSelector(System.Runtime.Serialization.ISurrogateSelector selector) => throw new NotImplementedException();
 		public virtual System.Runtime.Serialization.ISurrogateSelector GetNextSelector() => throw new NotImplementedException();
-		public virtual System.Runtime.Serialization.ISerializationSurrogate GetSurrogate(System.Type type, System.Runtime.Serialization.StreamingContext context, ref System.Runtime.Serialization.ISurrogateSelector selector) => throw new NotImplementedException();
+		public virtual System.Runtime.Serialization.ISerializationSurrogate GetSurrogate(System.Type type, System.Runtime.Serialization.StreamingContext context, out System.Runtime.Serialization.ISurrogateSelector selector) => throw new NotImplementedException();
 	}
 }

@@ -11,7 +11,7 @@ namespace FL_UnityEngine
 		public void DispatchIndirect(int kernelIndex, FL_UnityEngine.ComputeBuffer argsBuffer, System.UInt32 argsOffset) => throw new NotImplementedException();
 		public void DispatchIndirect(int kernelIndex, FL_UnityEngine.ComputeBuffer argsBuffer) => throw new NotImplementedException();
 		public int FindKernel(string name) => throw new NotImplementedException();
-		public void GetKernelThreadGroupSizes(int kernelIndex, ref System.UInt32 x, ref System.UInt32 y, ref System.UInt32 z) => throw new NotImplementedException();
+		public void GetKernelThreadGroupSizes(int kernelIndex, out System.UInt32 x, out System.UInt32 y, out System.UInt32 z) => throw new NotImplementedException();
 		public bool HasKernel(string name) => throw new NotImplementedException();
 		public void SetBool(string name, bool val) => throw new NotImplementedException();
 		public void SetBool(int nameID, bool val) => throw new NotImplementedException();

@@ -15,7 +15,7 @@ namespace FL_UnityEngine
 		public void AddCommandBufferAsync(UnityEngine.Rendering.CameraEvent evt, FL_UnityEngine.Rendering.CommandBuffer buffer, UnityEngine.Rendering.ComputeQueueType queueType) => throw new NotImplementedException();
 		public void CalculateFrustumCorners(UnityEngine.Rect viewport, float z, UnityEngine.Camera.MonoOrStereoscopicEye eye, UnityEngine.Vector3[] outCorners) => throw new NotImplementedException();
 		public UnityEngine.Matrix4x4 CalculateObliqueMatrix(UnityEngine.Vector4 clipPlane) => throw new NotImplementedException();
-		public static void CalculateProjectionMatrixFromPhysicalProperties(ref UnityEngine.Matrix4x4 output, float focalLength, UnityEngine.Vector2 sensorSize, UnityEngine.Vector2 lensShift, float nearClip, float farClip, UnityEngine.Camera.GateFitParameters gateFitParameters) => throw new NotImplementedException();
+		public static void CalculateProjectionMatrixFromPhysicalProperties(out UnityEngine.Matrix4x4 output, float focalLength, UnityEngine.Vector2 sensorSize, UnityEngine.Vector2 lensShift, float nearClip, float farClip, UnityEngine.Camera.GateFitParameters gateFitParameters) => throw new NotImplementedException();
 		public void CopyFrom(FL_UnityEngine.Camera other) => throw new NotImplementedException();
 		public void CopyStereoDeviceProjectionMatrixToNonJittered(UnityEngine.Camera.StereoscopicEye eye) => throw new NotImplementedException();
 		public static float FocalLengthToFOV(float focalLength, float sensorSize) => throw new NotImplementedException();
