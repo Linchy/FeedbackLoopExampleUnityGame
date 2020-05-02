@@ -11,6 +11,10 @@
 /FeedbackLoopExampleUnityProject/Library/ScriptAssemblies
 /FeedbackLoopExampleUnityProject/Library/*Cache*
 /FeedbackLoopExampleUnityProject/Library/*.log
+/FeedbackLoopExampleUnityProject/Library/*.dwlt
 /FeedbackLoopExampleUnityProject/Logs
 /FeedbackLoopExampleUnityProject/Temp
+/FeedbackLoopExampleUnityProject/Assets/Live Feedback Directory
+/FeedbackLoopExampleUnityProject/Assets/Editor
 *.user
+/FeedbackLoopExampleUnityProject/Assets/Live Feedback Directory.meta
