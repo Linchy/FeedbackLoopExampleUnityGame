@@ -8,7 +8,7 @@ using UnityEngine;
 namespace UnityStandardAssets.CrossPlatformInput
 {
     [ExecuteInEditMode]
-    public class MobileControlRig : FL_UnityEngine.MonoBehaviour
+    public class MobileControlRig : MonoBehaviour
 #if UNITY_EDITOR
         , UnityEditor.Build.IActiveBuildTargetChanged
 #endif
@@ -86,7 +86,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         private void EnableControlRig(bool enabled)
         {
-            foreach (FL_UnityEngine.Transform t in transform)
+            foreach (Transform t in transform)
             {
                 t.gameObject.SetActive(enabled);
             }

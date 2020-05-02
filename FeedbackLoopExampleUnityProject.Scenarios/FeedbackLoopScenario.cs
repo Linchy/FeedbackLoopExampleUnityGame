@@ -27,6 +27,10 @@ namespace FeedbackLoopExampleUnityProject.Scenarios
             thirdPersonUserControl = thirdPersonController.AddComponent<ThirdPersonUserControl>();
             thirdPersonCharacter = thirdPersonController.AddComponent<ThirdPersonCharacter>();
 
+            thirdPersonCharacter.gameObject.AddComponent<Animator>();
+            thirdPersonCharacter.gameObject.AddComponent<Rigidbody>();
+            thirdPersonCharacter.gameObject.AddComponent<CapsuleCollider>();
+
             thirdPersonController.transform.parent = sceneRoot.transform;
 
             // start

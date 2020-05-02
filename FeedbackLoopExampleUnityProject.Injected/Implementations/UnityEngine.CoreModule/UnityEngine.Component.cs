@@ -17,6 +17,8 @@ namespace FL_UnityEngine
         //     The game object this component is attached to. A component is always attached
         //     to a game object.
         public GameObject gameObject { get; set; }
+        public string tag { get; set; }
+        public FL_UnityEngine.Transform transform => gameObject.transform;
 
         //[SecuritySafeCritical]
         public T GetComponent<T>() => gameObject.GetComponent<T>();

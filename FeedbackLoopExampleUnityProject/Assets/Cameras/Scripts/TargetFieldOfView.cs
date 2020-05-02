@@ -17,8 +17,8 @@ namespace UnityStandardAssets.Cameras
 
         private float m_BoundSize;
         private float m_FovAdjustVelocity;
-        private FL_UnityEngine.Camera m_Cam;
-        private FL_UnityEngine.Transform m_LastTarget;
+        private Camera m_Cam;
+        private Transform m_LastTarget;
 
         // Use this for initialization
         protected override void Start()
@@ -27,7 +27,7 @@ namespace UnityStandardAssets.Cameras
             m_BoundSize = MaxBoundsExtent(m_Target, m_IncludeEffectsInSize);
 
             // get a reference to the actual camera component:
-            m_Cam = GetComponentInChildren<FL_UnityEngine.Camera>();
+            m_Cam = GetComponentInChildren<Camera>();
         }
 
 
@@ -41,14 +41,14 @@ namespace UnityStandardAssets.Cameras
         }
 
 
-        public override void SetTarget(FL_UnityEngine.Transform newTransform)
+        public override void SetTarget(Transform newTransform)
         {
             base.SetTarget(newTransform);
             m_BoundSize = MaxBoundsExtent(newTransform, m_IncludeEffectsInSize);
         }
 
 
-        public static float MaxBoundsExtent(FL_UnityEngine.Transform obj, bool includeEffects)
+        public static float MaxBoundsExtent(Transform obj, bool includeEffects)
         {
             // get the maximum bounds extent of object, including all child renderers,
             // but excluding particles and trails, for FOV zooming effect.

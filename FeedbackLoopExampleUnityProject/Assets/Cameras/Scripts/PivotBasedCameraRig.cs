@@ -13,15 +13,15 @@ namespace UnityStandardAssets.Cameras
         // 		Pivot
         // 			Camera
 
-        protected FL_UnityEngine.Transform m_Cam; // the transform of the camera
-        protected FL_UnityEngine.Transform m_Pivot; // the point at which the camera pivots around
+        protected Transform m_Cam; // the transform of the camera
+        protected Transform m_Pivot; // the point at which the camera pivots around
         protected Vector3 m_LastTargetPosition;
 
 
         protected virtual void Awake()
         {
             // find the camera in the object hierarchy
-            m_Cam = GetComponentInChildren<FL_UnityEngine.Camera>().transform;
+            m_Cam = GetComponentInChildren<Camera>().transform;
             m_Pivot = m_Cam.parent;
         }
     }

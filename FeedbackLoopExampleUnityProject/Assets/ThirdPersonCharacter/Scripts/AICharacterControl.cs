@@ -5,11 +5,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (UnityEngine.AI.NavMeshAgent))]
     [RequireComponent(typeof (ThirdPersonCharacter))]
-    public class AICharacterControl : FL_UnityEngine.MonoBehaviour
+    public class AICharacterControl : MonoBehaviour
     {
         public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
-        public FL_UnityEngine.Transform target;                                    // target to aim for
+        public Transform target;                                    // target to aim for
 
 
         private void Start()
@@ -35,7 +35,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 
-        public void SetTarget(FL_UnityEngine.Transform target)
+        public void SetTarget(Transform target)
         {
             this.target = target;
         }

@@ -46,7 +46,7 @@ namespace FL_UnityEngine
 		public void SendMessageUpwards(string methodName) => throw new NotImplementedException();
 		public void SendMessageUpwards(string methodName, UnityEngine.SendMessageOptions options) => throw new NotImplementedException();
 		//public FL_UnityEngine.GameObject gameObject => throw new NotImplementedException();
-		public string tag { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public FL_UnityEngine.Transform transform => throw new NotImplementedException();
+		//public string tag { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		//public FL_UnityEngine.Transform transform => throw new NotImplementedException();
 	}
 }

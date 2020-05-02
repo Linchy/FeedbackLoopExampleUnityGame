@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-    public abstract class AbstractTargetFollower : FL_UnityEngine.MonoBehaviour
+    public abstract class AbstractTargetFollower : MonoBehaviour
     {
         public enum UpdateType // The available methods of updating are:
         {
@@ -12,11 +12,11 @@ namespace UnityStandardAssets.Cameras
             ManualUpdate, // user must call to update camera
         }
 
-        [SerializeField] protected FL_UnityEngine.Transform m_Target;            // The target object to follow
+        [SerializeField] protected Transform m_Target;            // The target object to follow
         [SerializeField] private bool m_AutoTargetPlayer = true;  // Whether the rig should automatically target the player.
         [SerializeField] private UpdateType m_UpdateType;         // stores the selected update type
 
-        protected FL_UnityEngine.Rigidbody targetRigidbody;
+        protected Rigidbody targetRigidbody;
         
 
         protected virtual void Start()
@@ -28,7 +28,7 @@ namespace UnityStandardAssets.Cameras
                 FindAndTargetPlayer();
             }
             if (m_Target == null) return;
-            targetRigidbody = m_Target.GetComponent<FL_UnityEngine.Rigidbody>();
+            targetRigidbody = m_Target.GetComponent<Rigidbody>();
         }
 
 
@@ -82,7 +82,7 @@ namespace UnityStandardAssets.Cameras
         public void FindAndTargetPlayer()
         {
             // auto target an object tagged player, if no target has been assigned
-            var targetObj = FL_UnityEngine.GameObject.FindGameObjectWithTag("Player");
+            var targetObj = GameObject.FindGameObjectWithTag("Player");
             if (targetObj)
             {
                 SetTarget(targetObj.transform);
@@ -90,13 +90,13 @@ namespace UnityStandardAssets.Cameras
         }
 
 
-        public virtual void SetTarget(FL_UnityEngine.Transform newTransform)
+        public virtual void SetTarget(Transform newTransform)
         {
             m_Target = newTransform;
         }
 
 
-        public FL_UnityEngine.Transform Target
+        public Transform Target
         {
             get { return m_Target; }
         }
