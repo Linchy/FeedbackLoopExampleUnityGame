@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
+namespace UnityStandardAssets.CrossPlatformInput//.PlatformSpecific
 {
     public class StandaloneInput : VirtualInput
     {
@@ -13,11 +13,11 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 
         public override bool GetButton(string name)
         {
-            return Input.GetButton(name);
+            return Input.GetButton(name);   
         }
 
 
-        public override bool GetButtonDown(string name)
+        public override bool GetButtonDown(string name)    
         {
             return Input.GetButtonDown(name);
         }

@@ -18,3 +18,7 @@
 /FeedbackLoopExampleUnityProject/Assets/Editor
 *.user
 /FeedbackLoopExampleUnityProject/Assets/Live Feedback Directory.meta
+/FeedbackLoopExampleUnityProject/Assets/Plugins
+/FeedbackLoopExampleUnityProject/Library/expandedItems
+/FeedbackLoopExampleUnityProject/Library/CrashedAssetImports.txt
+/FeedbackLoopExampleUnityProject/Library/EditorInstance.json
