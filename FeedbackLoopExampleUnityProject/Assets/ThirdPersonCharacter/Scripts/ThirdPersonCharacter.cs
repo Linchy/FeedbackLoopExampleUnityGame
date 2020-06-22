@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
@@ -14,12 +15,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
-		[SerializeField] float m_GroundCheckDistance = 0.1f;
+		[SerializeField] float m_GroundCheckDistance = 0.3f;
 		
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
 		bool m_IsGrounded;
-		float m_OrigGroundCheckDistance;
+		float m_OrigGroundCheckDistance; 
 		const float k_Half = 0.5f;
 		float m_TurnAmount;
 		float m_ForwardAmount;
@@ -30,22 +31,29 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Crouching;
 
 
-		void Start()
+		void Start()  
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
-			m_Capsule = GetComponent<CapsuleCollider>();
+			m_Capsule = GetComponent<CapsuleCollider>();  
 			m_CapsuleHeight = m_Capsule.height;
 			m_CapsuleCenter = m_Capsule.center;
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
+		void OnGUI()
+		{
+			if (GUI.Button(new Rect(100, 100, 150, 100), "I am ff button"))
+			{
+				print("You gone dunit clicked the button!");
+			}
+		}
 
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
-
+			m_JumpPower = 6.6f;
 			// convert the world relative moveInput vector into a local-relative
 			// turn amount and forward amount required to head in the desired
 			// direction.

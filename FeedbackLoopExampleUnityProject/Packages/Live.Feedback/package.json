@@ -1,0 +1,15 @@
+{
+  "name": "com.lynch.livefeedback",
+  "version": "1.0.0",
+  "displayName": "Live Feedback",
+  "description": "Design games interactively",
+  "unity": "2019.1",
+  "keywords": [
+    "live", "programming", "coding", "interactive", "repl", "instant", "realtime"
+  ],
+  "author": {
+    "name": "Alex",
+    "email": "alexlynch1@hotmail.co.uk",
+    "url": "https://www.unity3d.com"
+  }
+}

@@ -101,24 +101,26 @@
     <Compile Include="Assets\Live Feedback Directory\CrossPlatformInput\Scripts\TiltInput.cs" />
     <Compile Include="Assets\Live Feedback Directory\CrossPlatformInput\Scripts\TouchPad.cs" />
     <Compile Include="Assets\Live Feedback Directory\CrossPlatformInput\Scripts\VirtualInput.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.AbstractTargetFollower.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.AutoCam.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.FreeLookCam.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.HandHeldCam.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.LookatTarget.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.PivotBasedCameraRig.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.ProtectCameraFromWallClip.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Cameras.TargetFieldOfView.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Characters.ThirdPerson.AICharacterControl.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.AxisTouchButton.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.ButtonHandler.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.InputAxisScrollbar.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.Joystick.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.MobileControlRig.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.TiltInput.cs" />
-    <Compile Include="Assets\Live Feedback Directory\Generated Containers\UnityStandardAssets.CrossPlatformInput.TouchPad.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_AbstractTargetFollower.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_AICharacterControl.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_AutoCam.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_AxisTouchButton.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_ButtonHandler.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_FreeLookCam.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_HandHeldCam.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_InputAxisScrollbar.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_Joystick.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_LookatTarget.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_MobileControlRig.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_PivotBasedCameraRig.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_ProtectCameraFromWallClip.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_TargetFieldOfView.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_ThirdPersonUserControltest.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_TiltInput.cs" />
+    <Compile Include="Assets\Live Feedback Directory\Generated Containers\___LFContainer_TouchPad.cs" />
+    <Compile Include="Assets\Live Feedback Directory\test.cs" />
     <Compile Include="Assets\Live Feedback Directory\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
     <Compile Include="Assets\Live Feedback Directory\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\Live Feedback Directory\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
@@ -342,82 +344,82 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.17f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.Build.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.Build.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.Build.Framework.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.Build.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Locator">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.Build.Locator.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.Build.Locator.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.CSharp">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.CodeAnalysis.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.CodeAnalysis.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.Workspaces">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/SQLitePCLRaw.batteries_v2.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.core">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/SQLitePCLRaw.core.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/SQLitePCLRaw.core.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Buffers.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.Immutable">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Collections.Immutable.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Composition.AttributedModel">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.AttributedModel.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Composition.AttributedModel.dll</HintPath>
     </Reference>
     <Reference Include="System.Composition.Convention">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.Convention.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Composition.Convention.dll</HintPath>
     </Reference>
     <Reference Include="System.Composition.Hosting">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.Hosting.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Composition.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="System.Composition.Runtime">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.Runtime.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Composition.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System.Composition.TypedParts">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.TypedParts.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Composition.TypedParts.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Memory.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics.Vectors">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Numerics.Vectors.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Reflection.Metadata">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Reflection.Metadata.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Reflection.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.Encoding.CodePages">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Text.Encoding.CodePages.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Dataflow">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Threading.Tasks.Dataflow.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Threading.Tasks.Dataflow.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Threading.Tasks.Extensions.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Assemblies/System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Live.Feedback.Unity.Game.Plugin">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Plugins/Live.Feedback.Unity.Game.Plugin.dll</HintPath>
+      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Packages/Live.Feedback/Plugins/Live.Feedback.Unity.Game.Plugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
@@ -781,72 +783,6 @@
     </Reference>
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Build.Locator">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.Build.Locator.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Build.Framework">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.Build.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Immutable">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Collections.Immutable.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.AttributedModel">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.AttributedModel.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.Convention">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.Convention.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.Hosting">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.Hosting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.Runtime">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.TypedParts">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Composition.TypedParts.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics.Vectors">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection.Metadata">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Reflection.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding.CodePages">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Text.Encoding.CodePages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Dataflow">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Threading.Tasks.Dataflow.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Build">
-      <HintPath>C:/git/FeedbackLoopExampleUnityGame/FeedbackLoopExampleUnityProject/Assets/Assemblies/Microsoft.Build.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
